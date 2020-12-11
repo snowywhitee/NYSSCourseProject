@@ -1,0 +1,23 @@
+﻿<!--model FileInfoModel-->
+
+@model EncryptApp.Models.FileInfoModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/StyleSheet.css" type="text/css" />
+</head>
+<body>
+    <div style="height:100vh;
+            width:100vw">
+        <section class="sectionEncrypt" onclick="window.location='@Url.Action("Encrypt", "Action")'">
+            <h1 class="h1Encrypt">ENCRYPT</h1>
+        </section>
+        <section class="sectionDecrypt" onclick="window.location='@Url.Action("Decrypt", "Action")'">
+            <h1 class="h1Decrypt">DECRYPT</h1>
+        </section>
+    </div>
+</body>
+</html>

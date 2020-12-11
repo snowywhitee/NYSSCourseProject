@@ -1,0 +1,137 @@
+﻿body {
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+}
+
+.sectionEncryptStatic {
+    height: 100vh;
+    width: 50vw;
+    float: left;
+    background-color: cornflowerblue;
+    align-content: center;
+    vertical-align: central;
+    text-align: left;
+}
+
+.sectionEncrypt {
+    height: 100vh;
+    width: 50vw;
+    float: left;
+    background-color: cornflowerblue;
+    align-content: center;
+    vertical-align: central;
+    text-align: left;
+}
+
+    .sectionEncrypt:hover {
+        height: 100vh;
+        width: 50vw;
+        float: left;
+        background-color: darkturquoise;
+        align-content: center;
+        vertical-align: central;
+        text-align: left;
+    }
+
+.sectionDecryptStatic {
+    height: 100vh;
+    width: 50vw;
+    float: right;
+    background-color: white;
+    align-content: center;
+    vertical-align: central;
+    text-align: left;
+}
+
+.sectionDecrypt {
+    height: 100vh;
+    width: 50vw;
+    float: left;
+    background-color: white;
+    align-content: center;
+    vertical-align: central;
+    text-align: left;
+}
+
+    .sectionDecrypt:hover {
+        height: 100vh;
+        width: 50vw;
+        float: left;
+        background-color: azure;
+        align-content: center;
+        vertical-align: central;
+        text-align: left;
+    }
+
+.h1Encrypt {
+    margin-top: 80vh;
+    font-size: 100px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 0px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.h1Decrypt {
+    margin-top: auto;
+    font-size: 100px;
+    color: cornflowerblue;
+    font-weight: bold;
+    margin-bottom: 80vh;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: right;
+}
+
+.textBox {
+    height: 30px;
+    width: 250px;
+    outline: none;
+    border: 1px solid #cdcdcd;
+    padding-left: 10px;
+    border-radius: 2.5em;
+    box-shadow: 0 0px 2px #aaa;
+}
+
+    .textBox:focus {
+        height: 30px;
+        width: 250px;
+        outline: none;
+        border: 1px solid Highlight;
+        padding-left: 10px;
+        border-radius: 2.5em;
+        box-shadow: 0 0px 2px #aaa;
+    }
+
+.subbutton {
+    height: 30px;
+    width: 80px;
+    color: #494949 !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #ffffff;
+    border: 2px solid #494949 !important;
+    transition: all 0.4s ease 0s;
+}
+
+    .subbutton:hover {
+        color: #ffffff !important;
+        background: #f6b93b;
+        border-color: #f6b93b !important;
+        transition: all 0.4s ease 0s;
+    }
+
+.header {
+    font-size: 72px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: cornflowerblue;
+    font-weight: bold;
+    text-align: center;
+}
+
+.menu {
+    height: 30px;
+    width: 80px;
+    border: 1px solid #cdcdcd;
+}

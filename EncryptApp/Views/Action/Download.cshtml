@@ -1,0 +1,49 @@
+﻿@page
+@model EncryptApp.Models.DownloadFileInfoModel
+@{
+    var Encodings = new List<SelectListItem>();
+    Encodings.Add(new SelectListItem() { Text = "Overwrite", Value = "true", Selected = true });
+    Encodings.Add(new SelectListItem() { Text = "CreateNew", Value = "false" });
+}
+
+<link rel="stylesheet" href="~/css/StyleSheet.css" />
+
+<style type="text/css">
+    .validation-summary-errors ul {
+        color: red;
+        list-style-type: none;
+    }
+</style>
+<style>
+    .checkBox {
+    }
+</style>
+
+<div style="height:100%; width:100vw; text-align:center; margin-top:10%">
+    <h1 class="header">Specify the path:</h1>
+    <div style="text-align:center">
+        @using (@Html.BeginForm())
+        {
+            @Html.ValidationSummary()
+            <div>
+                @Html.TextBoxFor(b => b.FilePath, new { @class = "textBox", placeholder = "Path" })
+            </div>
+            <br />
+            <div>
+                <label>Overwrite if exists?</label>
+                @Html.CheckBoxFor(b => b.Overwrite, new { @class = "checkBox", placeholder = "Path" })
+            </div>
+            <br />
+            <div>
+                <button class="subbutton" type="submit">
+                    Go!
+                </button>
+            </div>
+            <br />
+        }
+        <button class="subbutton" id="BackHome"
+                onclick="window.location='@Url.Action("Index", "Home")'">
+            Home
+        </button>
+    </div>
+</div>
