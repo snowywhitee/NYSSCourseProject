@@ -84,8 +84,8 @@ Framework.
 ### Built With
 
 В проекте были использованы пакеты:
-* [OpenXML](https://getbootstrap.com) Для работы с .docx файлами
-* [xUnit]() Для юнит тестов
+* [OpenXML](https://github.com/OfficeDev/Open-XML-SDK) Для работы с .docx файлами
+* [xUnit](https://xunit.net/) Для юнит тестов
 
 
 
