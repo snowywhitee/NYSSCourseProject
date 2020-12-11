@@ -1,0 +1,55 @@
+﻿@model EncryptApp.Models.RawTextModel
+@{
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/StyleSheet.css" />
+    <style>
+        .textArea {
+            width: 300px;
+            height: 100px;
+            outline: none;
+            border: 1px solid #cdcdcd;
+            padding-left: 15px;
+            padding-top:15px;
+            border-radius: 2.0em;
+            box-shadow: 0 0px 2px #aaa;
+        }
+    </style>
+</head>
+<body style="width:100vw">
+    <h1 class="header">Enter your key and text here:</h1>
+    <div style="margin-bottom:auto; margin-top:50px; text-align:center">
+
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary()
+            <br />
+            <div>
+                @Html.TextBoxFor(b => b.Key, new { @class = "textBox", placeholder = "Key: default is скорпион" })
+            </div>
+            <br />
+            <div>
+                @Html.TextAreaFor(b => b.Text, new { @class = "textArea", placeholder = "Enter your text here"})
+            </div>
+            <br />
+            <div>
+                <label>Decrypt? Check for encrypt</label>
+                @Html.CheckBoxFor(b => b.Encrypt, new { @class = "checkBox", placeholder = "Path" })
+            </div>
+            <br />
+            <div>
+                <button class="subbutton" type="submit">Go!</button>
+            </div>
+            <br />
+        }
+
+        <button class="subbutton" id="BackHome"
+                onclick="window.location='@Url.Action("Index", "Home")'">
+            Home
+        </button>
+    </div>
+</body>
+</html>

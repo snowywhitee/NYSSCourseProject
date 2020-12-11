@@ -11,7 +11,7 @@ namespace EncryptApp.Controllers
 {
     public class ActionController : Controller
     {
-        private static TextLoader textLoader;
+        private static SimpleTextLoader textLoader;
         private static EncryptingMachine machine = new EncryptingMachine();
         public IActionResult Index()
         {
@@ -108,6 +108,36 @@ namespace EncryptApp.Controllers
             //Do the work
             textLoader.Encrypt(machine);
             //Redirect
+            return Redirect("/Action/Result");
+        }
+        [HttpGet]
+        public IActionResult Text()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Text(RawTextModel model)
+        {
+            //Validate
+            if (!IsKeyValid(model.Key))
+            {
+                ModelState.AddModelError("Invalid Key", "Invalid Key, must have only russian letters!");
+            }
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            //Redirect
+            textLoader = new SimpleTextLoader(model.Text, model.Encoding);
+            machine.Key = model.Key;
+            if (model.Encrypt)
+            {
+                textLoader.Encrypt(machine);
+            }
+            else
+            {
+                textLoader.Decrypt(machine);
+            }
             return Redirect("/Action/Result");
         }
 
