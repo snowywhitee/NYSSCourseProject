@@ -94,6 +94,8 @@ Framework.
 
 ### Structure
 
+Решение находится в ..\EncryptApp\EncryptApp.sln
+
 Все стили, примененные к страницам находятся в ..\wwwroot\css\StyleSheet.css.
 
 В целях улучшения производительности было заменено:
