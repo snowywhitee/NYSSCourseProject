@@ -97,5 +97,10 @@ Framework.
 Незамысловатое user friendly оформление, вместо pop-up окон формами и ошибками использовалось 
 @Html.ValidationSummary и валидация модели (то есть при создании класса используется всегда правильный его инвариант)
 
+![alt text](screenshots/Home.png "Home/Index")
+![alt text](screenshots/Encrypt.png "Action/Encrypt")
+![alt text](screenshots/Decrypt.png "Action/Decrypt")
+![alt text](screenshots/Result.png "Action/Result")
+![alt text](screenshots/Download.png "Action/Download")
 
 
