@@ -33,12 +33,7 @@ namespace EncryptApp
         }
         public string HtmlPrint()
         {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < text.Length; i++)
-            {
-                sb.Append(text[i]);
-            }
-            return sb.ToString().Replace(Environment.NewLine, "<br />");
+            return Print().Replace(Environment.NewLine, "<br />");
         }
         public virtual void Download(string newPath, bool overwrite)
         {
