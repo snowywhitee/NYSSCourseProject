@@ -10,15 +10,21 @@ namespace EncryptApp
         protected string path;
         protected char[] text;
         private Encoding encoding;
+
         public TextLoader(string path, Encoding encoding)
         {
-            if (path == null || path == "") throw new Exception("File path can't be null or empty");
-            if (!File.Exists(path)) throw new Exception($"File {path} not found");
+            //Check for errors
+            if (path == null || path == "") throw new TextLoaderException("File path can't be null or empty");
+            if (!File.Exists(path)) throw new TextLoaderException($"File {path} not found");
+            if (encoding == null) encoding = Encoding.UTF8;
+
+            //Initialize
             this.encoding = encoding;
-            if (encoding == null) this.encoding = Encoding.UTF8;
             this.path = path;
             Load();
         }
+
+        //Methods
         public virtual void Load()
         {
             text = File.ReadAllText(path, encoding).ToCharArray();
@@ -51,22 +57,28 @@ namespace EncryptApp
         }
         public virtual void Download(string newPath, bool overwrite)
         {
-            if (File.Exists(newPath))
-            {
-                if (overwrite)
-                {
-                    File.Delete(newPath);
-                }
-                else
-                {
-                    throw new TextLoaderException("File couldn't be overwritten");
-                }
-            }
+            HandleOverwriting(newPath, overwrite);
             using (FileStream fs = File.Create(newPath))
             {
                 using (StreamWriter sw = new StreamWriter(fs, encoding))
                 {
                     sw.Write(text);
+                }
+            }
+        }
+        
+        //Helper methods
+        protected void HandleOverwriting(string path, bool overwrite)
+        {
+            if (File.Exists(path))
+            {
+                if (overwrite)
+                {
+                    File.Delete(path);
+                }
+                else
+                {
+                    throw new TextLoaderException("File couldn't be overwritten");
                 }
             }
         }

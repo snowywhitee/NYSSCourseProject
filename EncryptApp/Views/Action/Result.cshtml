@@ -1,18 +1,18 @@
 ﻿@page
 @{
 }
-<link rel="stylesheet" href="~/css/StyleSheet.css" />
 
-
-<h1 class="header">Here is your file preview:</h1>
-
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/StyleSheet.css" />
+</head>
 <body style="width:100vw">
+    <h1 class="header">Here is your file preview:</h1>
     <div style="margin-left:20%; margin-right:20%">@Html.Raw(ViewBag.Name)</div>
-
-
     <div style="margin-bottom:auto; margin-top:50px; text-align:center">
-
-        <button style="width:200px" class="subbutton" type="button" onclick="window.location='@Url.Action("Download", "Action")'">
+        <button style="width:200px" class="subbutton" type="button" 
+                onclick="window.location='@Url.Action("Download", "Action")'">
             Download
         </button>
         <br />
@@ -21,6 +21,6 @@
                 onclick="window.location='@Url.Action("Index", "Home")'">
             Home
         </button>
-
     </div>
 </body>
+</html>

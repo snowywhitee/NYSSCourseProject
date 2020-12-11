@@ -5,6 +5,17 @@
     margin-bottom: 0px;
 }
 
+.menu {
+    height: 30px;
+    width: 80px;
+    border: 1px solid #cdcdcd;
+}
+
+.validation-summary-errors ul {
+    color: red;
+    list-style-type: none;
+}
+
 .sectionEncryptStatic {
     height: 100vh;
     width: 50vw;

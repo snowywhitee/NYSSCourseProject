@@ -1,5 +1,4 @@
 ﻿@page
-<!--model EncryptApp.Views.Action.EncryptModel-->
 @model EncryptApp.Models.FileInfoModel
 @{
     var Encodings = new List<SelectListItem>();
@@ -8,58 +7,58 @@
     Encodings.Add(new SelectListItem() { Text = "ASCII", Value = "ASCII" });
 }
 
-<link rel="stylesheet" href="~/css/StyleSheet.css" />
-<style type="text/css">
-    .validation-summary-errors ul {
-        color: red;
-        list-style-type: none;
-    }
-</style>
-<style>
-    .menu {
-        height: 30px;
-        width: 80px;
-        border: 1px solid #cdcdcd;
-    }
-</style>
-
-<div style="height:100vh;
-            width:100vw;
-            float:left">
-    <section class="sectionEncryptStatic">
-        <h1 class="h1Encrypt">ENCRYPT</h1>
-    </section>
-    <section style="height:100vh;
-                    width:50vw;
-                    float:right; text-align:center">
-        <div style="margin-top:30%">
-            <h1>Choose your file</h1>
-            @using (@Html.BeginForm())
-            {
-                @Html.ValidationSummary()
-                <div>
-                    @Html.TextBoxFor(b => b.FilePath, new { @class = "textBox", placeholder = "Path" })
-                </div>
-                <br />
-                <div>
-                    @Html.TextBoxFor(b => b.Key, new { @class = "textBox", placeholder = "Key: default is скорпион" })
-                </div>
-                <br />
-                <div>
-                    @Html.DropDownListFor(b => b.Encoding, Encodings, new { @class = "menu" })
-                </div>
-                <br />
-                <div>
-                    <button class="subbutton" type="submit">
-                        Go!
-                    </button>
-                </div>
-                <br />
-            }
-            <button class="subbutton" id="BackHome"
-                    onclick="window.location='@Url.Action("Index", "Home")'">
-                Home
-            </button>
-        </div>
-    </section>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/StyleSheet.css" />
+    <style type="text/css">
+        .validation-summary-errors ul {
+            color: red;
+            list-style-type: none;
+        }
+    </style>
+    <style>
+        .menu {
+            height: 30px;
+            width: 80px;
+            border: 1px solid #cdcdcd;
+        }
+    </style>
+</head>
+<body>
+    <div style="height:100vh; width:100vw; float:left">
+        <section class="sectionEncryptStatic">
+            <h1 class="h1Encrypt">ENCRYPT</h1>
+        </section>
+        <section style="height:100vh; width:50vw; float:right; text-align:center">
+            <div style="margin-top:30%">
+                <h1>Choose your file</h1>
+                @using (@Html.BeginForm())
+                {
+                    @Html.ValidationSummary()
+                    <div>
+                        @Html.TextBoxFor(b => b.FilePath, new { @class = "textBox", placeholder = "Path" })
+                    </div>
+                    <br />
+                    <div>
+                        @Html.TextBoxFor(b => b.Key, new { @class = "textBox", placeholder = "Key: default is скорпион" })
+                    </div>
+                    <br />
+                    <div>
+                        @Html.DropDownListFor(b => b.Encoding, Encodings, new { @class = "menu" })
+                    </div>
+                    <br />
+                    <div>
+                        <button class="subbutton" type="submit">Go!</button>
+                    </div>
+                    <br />
+                }
+                <button class="subbutton" id="BackHome"
+                        onclick="window.location='@Url.Action("Index", "Home")'">
+                    Home
+                </button>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

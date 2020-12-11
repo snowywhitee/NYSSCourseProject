@@ -11,7 +11,7 @@ namespace EncryptApp.Controllers
 {
     public class ActionController : Controller
     {
-        private static TextLoader textLoader = null;
+        private static TextLoader textLoader;
         private static EncryptingMachine machine = new EncryptingMachine();
         public IActionResult Index()
         {
@@ -25,8 +25,7 @@ namespace EncryptApp.Controllers
         [HttpPost]
         public IActionResult Download(DownloadFileInfoModel model)
         {
-            //validate
-
+            //Validate
             if (Path.GetExtension(model.FilePath) == ".txt" && textLoader is DocxLoader)
             {
                 ModelState.AddModelError("Invalid Path", "This path is invalid: file must be .docx");
@@ -39,15 +38,25 @@ namespace EncryptApp.Controllers
             {
                 ModelState.AddModelError("File already exist", "This file already exists");
             }
-
-
+            //Show validation summary
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-
-            //do the work
-            textLoader.Download(model.FilePath, model.Overwrite);
+            //Do the work
+            try
+            {
+                textLoader.Download(model.FilePath, model.Overwrite);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("File wasn't downloaded", "File could't be downloaded to this path");
+            }
+            //Show error
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
             return Redirect("/Home");
         }
         public IActionResult Result()
@@ -55,7 +64,7 @@ namespace EncryptApp.Controllers
             if (textLoader != null)
             {
                 //display lines
-                ViewBag.Name = $"{textLoader.HtmlPrint()}";
+                ViewBag.Name = textLoader.HtmlPrint();
             }
             return View();
         }
@@ -67,6 +76,7 @@ namespace EncryptApp.Controllers
         [HttpPost]
         public IActionResult Decrypt(FileInfoModel model)
         {
+            //Validate
             model.Encrypt = false;
             Validate(model);
             if (!ModelState.IsValid)
@@ -74,9 +84,9 @@ namespace EncryptApp.Controllers
                 return View(model);
             }
             InitializeTextLoader(model);
+            //Do the work
             textLoader.Decrypt(machine);
-
-            //redirect
+            //Redirect
             return Redirect("/Action/Result");
         }
         [HttpGet]
@@ -87,6 +97,7 @@ namespace EncryptApp.Controllers
         [HttpPost]
         public IActionResult Encrypt(FileInfoModel model)
         {
+            //Validate
             model.Encrypt = true;
             Validate(model);
             if (!ModelState.IsValid)
@@ -94,17 +105,15 @@ namespace EncryptApp.Controllers
                 return View(model);
             }
             InitializeTextLoader(model);
-
+            //Do the work
             textLoader.Encrypt(machine);
-
-            //redirect
+            //Redirect
             return Redirect("/Action/Result");
         }
 
         //Helper functions
         private void Validate(FileInfoModel model)
         {
-            //validate
             if (!IsPathValid(model.FilePath))
             {
                 ModelState.AddModelError("Invalid Path", "This path is invalid: file must exist, and be .txt or .docx");
@@ -116,7 +125,7 @@ namespace EncryptApp.Controllers
         }
         private void InitializeTextLoader(FileInfoModel model)
         {
-            //path
+            //Path
             if (Path.GetExtension(model.FilePath) == ".txt")
             {
                 textLoader = new TextLoader(model.FilePath, model.GetEncoding());
@@ -125,7 +134,7 @@ namespace EncryptApp.Controllers
             {
                 textLoader = new DocxLoader(model.FilePath, model.GetEncoding());
             }
-            //key
+            //Key
             machine.Key = model.Key;
         }
         private bool IsPathValid(string path)

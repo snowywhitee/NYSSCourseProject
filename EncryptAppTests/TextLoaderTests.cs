@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using Xunit;
 
@@ -9,16 +10,32 @@ namespace EncryptAppTests
 {
     public class TextLoaderTests
     {
-        private const string pathTest1 = @"C:\Users\нр\source\repos\EncryptAppTests\TestFiles\test1.txt";
-        private const string pathTest1res = @"C:\Users\нр\source\repos\EncryptAppTests\TestFiles\test1res.txt";
-        private const string pathTest2 = @"C:\Users\нр\source\repos\EncryptAppTests\TestFiles\test2.txt";
-        private const string pathTest2res = @"C:\Users\нр\source\repos\EncryptAppTests\TestFiles\test2res.txt";
-        private const string pathTest3 = @"C:\Users\нр\source\repos\EncryptAppTests\TestFiles\test3.txt";
-        private const string pathTest3res = @"C:\Users\нр\source\repos\EncryptAppTests\TestFiles\test3res.txt";
-        private const string pathTest4 = @"C:\Users\нр\source\repos\EncryptAppTests\TestFiles\test4.txt";
-        private const string pathTest4res = @"C:\Users\нр\source\repos\EncryptAppTests\TestFiles\test4res.txt";
-        private const string pathTest5 = @"C:\Users\нр\source\repos\EncryptAppTests\TestFiles\Result_v5.txt";
+        private const string pathTest1 = "test1.txt";
+        private const string pathTest1res = "test1res.txt";
+        private const string pathTest2 = "test2.txt";
+        private const string pathTest2res = "test2res.txt";
+        private const string pathTest3 = "test3.txt";
+        private const string pathTest3res = "test3res.txt";
+        private const string pathTest4 = "test4.txt";
+        private const string pathTest4res = "test4res.txt";
+        private const string pathTest5 = "Result_v5.txt";
+        private string directory;
 
+        public TextLoaderTests()
+        {
+            var parent = Directory.GetParent(Directory.GetCurrentDirectory()).Parent;
+            string startDirectory = null;
+            if (parent != null)
+            {
+                var directoryInfo = parent.Parent;
+                //string startDirectory = null;
+                if (directoryInfo != null)
+                {
+                    startDirectory = directoryInfo.FullName;
+                }
+            }
+            directory = Path.Combine(startDirectory, @"TestFiles\");
+        }
 
         [Theory]
         [InlineData(null, "File path can't be null or empty")]
@@ -38,9 +55,11 @@ namespace EncryptAppTests
 
         [Theory]
         [InlineData(pathTest1, pathTest1res)]
-        //[InlineData(pathTest3, pathTest3res)]
+        [InlineData(pathTest3, pathTest3res)]
         public void EncryptTest(string passed, string result)
         {
+            passed = directory + passed;
+            result = directory + result;
             EncryptingMachine machine = new EncryptingMachine() { Key = "скорпион" };
             TextLoader textLoader = new TextLoader(passed, Encoding.UTF8);
             textLoader.Encrypt(machine);
@@ -54,6 +73,8 @@ namespace EncryptAppTests
         [InlineData(pathTest4, pathTest4res)]
         public void DecryptTest(string passed, string result)
         {
+            passed = directory + passed;
+            result = directory + result;
             EncryptingMachine machine = new EncryptingMachine() { Key = "скорпион" };
             TextLoader textLoader = new TextLoader(passed, Encoding.UTF8);
             textLoader.Decrypt(machine);
@@ -64,17 +85,18 @@ namespace EncryptAppTests
         [Fact]
         public void DecryptTestEncoding()
         {
+            string passed = directory + pathTest5;
+            string result = directory + pathTest4res;
             EncryptingMachine machine = new EncryptingMachine() { Key = "скорпион" };
-            TextLoader textLoader = new TextLoader(pathTest5, CodePagesEncodingProvider.Instance.GetEncoding(1251));
+            TextLoader textLoader = new TextLoader(passed, CodePagesEncodingProvider.Instance.GetEncoding(1251));
             textLoader.Decrypt(machine);
-            string expected = File.ReadAllText(pathTest4res);
-            //make another file//
+            string expected = File.ReadAllText(result);
             Assert.Equal(expected, textLoader.Print().Substring(0, expected.Length));
         }
         [Fact]
         public void Overwrite()
         {
-            string path = pathTest1;
+            string path = directory + pathTest1;
             TextLoader textLoader = new TextLoader(path, Encoding.UTF8);
             try
             {

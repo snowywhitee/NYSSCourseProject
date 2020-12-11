@@ -12,10 +12,8 @@ namespace EncryptApp.Models
 {
     public class FileInfoModel
     {
-        [DisplayName("File path:")]
         [Required(ErrorMessage = "You must specify the file path!")]
         public string FilePath { get; set; }
-        [DisplayName("Key:")]
         public string Key { get; set; }
         public string Encoding { get; set; }
         [Required]

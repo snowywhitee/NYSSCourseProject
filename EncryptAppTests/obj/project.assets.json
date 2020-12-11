@@ -3602,11 +3602,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\нр\\source\\repos\\EncryptAppTests\\EncryptAppTests.csproj",
+      "projectUniqueName": "C:\\Users\\нр\\Documents\\GitHub\\cloned\\NYSSCourseProject\\EncryptAppTests\\EncryptAppTests.csproj",
       "projectName": "EncryptAppTests",
-      "projectPath": "C:\\Users\\нр\\source\\repos\\EncryptAppTests\\EncryptAppTests.csproj",
+      "projectPath": "C:\\Users\\нр\\Documents\\GitHub\\cloned\\NYSSCourseProject\\EncryptAppTests\\EncryptAppTests.csproj",
       "packagesPath": "C:\\Users\\нр\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\нр\\source\\repos\\EncryptAppTests\\obj\\",
+      "outputPath": "C:\\Users\\нр\\Documents\\GitHub\\cloned\\NYSSCourseProject\\EncryptAppTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\нр\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3622,8 +3622,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\нр\\source\\repos\\EncryptApp\\EncryptApp.csproj": {
-              "projectPath": "C:\\Users\\нр\\source\\repos\\EncryptApp\\EncryptApp.csproj"
+            "C:\\Users\\нр\\Documents\\GitHub\\cloned\\NYSSCourseProject\\EncryptApp\\EncryptApp.csproj": {
+              "projectPath": "C:\\Users\\нр\\Documents\\GitHub\\cloned\\NYSSCourseProject\\EncryptApp\\EncryptApp.csproj"
             }
           }
         }
